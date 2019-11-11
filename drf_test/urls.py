@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+import xadmin
 
 urlpatterns = [
-    url(r'^xadmin/', admin.site.urls),
+    url(r'^xadmin/', xadmin.site.urls),
     url(r'^v1/users',include('users.urls')),
 ]
