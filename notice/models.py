@@ -9,6 +9,7 @@ class CompanyInfo(BaseModel):
     end_time = models.DateTimeField(verbose_name=u'终止时间')
     is_alive = models.BooleanField(default=True,verbose_name=u'是否在有效期')
 
+
      # 对当前表进行相关设置: 
     class Meta:
         db_table = 'company'
