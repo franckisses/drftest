@@ -1,6 +1,6 @@
 ## 第一节 ElasticSearch概述
 
-是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTfulweb接口。ElasticSearch是用Java开发的， 并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。构建在全 文检索开源软件Lucene之上的Elasticsearch，不仅能对海量规模的数据完成分布式索引与检索，还能提供数据聚合分析。据国际权威的 数据库产品评测机构DBEngines的统计，在2016年1月，Elasticsearch已超过Solr等，成为排名第一的搜索引擎类应用 概括：基于Restful标准的高扩展高可用的实时数据分析的全文搜索工具
+​		是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTfulweb接口。ElasticSearch是用Java开发的， 并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。构建在全 文检索开源软件Lucene之上的Elasticsearch，不仅能对海量规模的数据完成分布式索引与检索，还能提供数据聚合分析。据国际权威的 数据库产品评测机构DBEngines的统计，在2016年1月，Elasticsearch已超过Solr等，成为排名第一的搜索引擎类应用 概括：基于Restful标准的高扩展高可用的实时数据分析的全文搜索工具
 
 ### 1.2 ElasticSearch的基本概念
 
@@ -100,21 +100,13 @@ GET/POST/PUT/DELETE
 
 示例：
 访问一个网页
-
 curl www.baidu.com
-
 curl -o tt.html www.baidu.com
-
 显示响应的头信息
-
 curl -i www.baidu.com
-
 显示一次HTTP请求的通信过程
-
 curl -v www.baidu.com
-
 执行GET/POST/PUT/DELETE操作
-
 curl -X GET/POST/PUT/DELETE url
 ```
 
@@ -131,8 +123,6 @@ Elasticsearch 使用一种称为 倒排索引 的结构，它适用于快速的�
 ![WX20191120-014638@2x](WX20191120-014638@2x.png)
 
 (2):中文和英文等语言不同，单词之间没有明确分隔符号，所以首先要用分词系统将文档自动切分成单词序列。这样每个文档就转换为由单词序列构成的数据流，为了系统后续处理方便，需要对每个不同的单词赋予唯一的单词编号，同时记录下哪些文档包含这个单词，在如此处理结束后，我们可以得到最简单的倒排索引
-
-
 
  “单词ID”一栏记录了每个单词的单词编号，第二栏是对应的单词，第三栏即每个单词对应的倒排列表
 
@@ -235,22 +225,14 @@ language 分词器：特定语言的分词器，不支持中文
 
 ```
 PUT /lib/
-
 {
-
-  "settings":{
-  
+  "settings":{ 
       "index":{
-      
         "number_of_shards": 5,
-        
         "number_of_replicas": 1
-        
         }
-        
       }
 }
-
 PUT  lib
 
 ```
@@ -271,13 +253,9 @@ PUT /lib/user/1
 
 {
     "first_name" :  "Jane",
-    
     "last_name" :   "Smith",
-    
     "age" :         32,
-    
     "about" :       "I like to collect rock albums",
-    
     "interests":  [ "music" ]
 }
 
@@ -285,15 +263,10 @@ POST /lib/user/
 
 {
     "first_name" :  "Douglas",
-    
     "last_name" :   "Fir",
-    
     "age" :         23,
-    
     "about":        "I like to build cabinets",
-    
-    "interests":  [ "forestry" ]
-    
+    "interests":  [ "forestry" ] 
 }
 
 ```
@@ -302,11 +275,8 @@ POST /lib/user/
 
 ```
 GET /lib/user/1
-
 GET /lib/user/
-
 GET /lib/user/1?_source=age,interests
-
 ```
 
 更新文档:
@@ -327,30 +297,23 @@ PUT /lib/user/1
 }
 
 POST /lib/user/1/_update
-
 {
-
-  "doc":{
-  
+  "doc":{ 
       "age":33
-      
       }
 }
-
 ```
 
 删除一个文档
 
 ```
 DELETE /lib/user/1
-
 ```
 
 删除一个索引
 
 ```
 DELETE /lib
-
 ```
 
 ### 2.3 批量获取文档
@@ -672,9 +635,9 @@ es自动创建了index，type，以及type对应的mapping(dynamic mapping)
 字符型：string，string类型包括
 text 和 keyword
 
-text类型被用来索引长文本，在建立索引前会将这些文本进行分词，转化为词的组合，建立索引。允许es来检索这些词语。text类型不能用来排序和聚合。
+text 类型被用来索引长文本，在建立索引前会将这些文本进行分词，转化为词的组合，建立索引。允许es来检索这些词语。text 类型不能用来排序和聚合。
 
-Keyword类型不需要进行分词，可以被用来检索过滤、排序和聚合。keyword 类型字段只能用本身来进行检索
+Keyword 类型不需要进行分词，可以被用来检索过滤、排序和聚合。keyword 类型字段只能用本身来进行检索
 
 数字型：long, integer, short, byte, double, float
 日期型：date
@@ -1857,13 +1820,9 @@ get /index/type/1?_source=name
 ```
 PUT /lib/user/4
 { "first_name" : "Jane",
-
 "last_name" :   "Lucy",
-
 "age" :         24,
-
 "about" :       "I like to collect rock albums",
-
 "interests":  [ "music" ]
 }
 
